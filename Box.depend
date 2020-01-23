@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1578867956 source:c:\users\gumani\documents\c++\box\main.cpp
+	<iostream>
+	<conio.h>
+	<cstdlib>
+	<cstdio>
+
