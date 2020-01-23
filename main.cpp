@@ -22,7 +22,7 @@ void draw(int row,int col)
     }
 }
 
-int main(int argc,char**argv)
+int main(int argc,char*argv[])
 {
     if(argc != 3)
         return -34;
