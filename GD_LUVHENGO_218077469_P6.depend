@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1568141220 source:c:\users\gumani\documents\school stuuf\computer science\latest\gd_luvhengo_218077469_p6\ujrowmajorgrid.cpp
+	"UJRowMajorGrid.h"
+	<cstdlib>
+
+1568141187 c:\users\gumani\documents\school stuuf\computer science\latest\gd_luvhengo_218077469_p6\ujrowmajorgrid.h
+	<iostream>
+
+1568138109 source:c:\users\gumani\documents\school stuuf\computer science\latest\gd_luvhengo_218077469_p6\main.cpp
+	"UJRowMajorGrid.h"
+
