@@ -18,10 +18,10 @@ public:
     bool operator!=(const UJRowMajorGrid&) const;
 
     /// () Operator
-    char operator() (const int&,const int&);
+    char &operator() (const int&,const int&);
 
     /// [] Operator
-    char operator[](const int&);
+    char &operator[](const int&);
 
     /// = Operator
     char& operator=(char);

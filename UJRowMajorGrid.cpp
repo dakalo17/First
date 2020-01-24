@@ -1,9 +1,6 @@
 #include "UJRowMajorGrid.h"
 #include <cstdlib>
-UJRowMajorGrid::UJRowMajorGrid():UJRowMajorGrid(DEFAULT_ROWS,DEFAULT_COLS)
-{
-
-}
+UJRowMajorGrid::UJRowMajorGrid():UJRowMajorGrid(DEFAULT_ROWS,DEFAULT_COLS){}
 UJRowMajorGrid::UJRowMajorGrid(int intRows ,int intCols)
 {
     _rows =intRows;
@@ -33,51 +30,58 @@ UJRowMajorGrid::UJRowMajorGrid(const UJRowMajorGrid& objGrid)
 
     for(int r=0;r<_rows;r++)
         for(int c=0;c<_cols;c++)
-            array[r][c] = objGrid.array[r][c];
+            this->array[r][c] = objGrid.array[r][c];
 }
 
 bool UJRowMajorGrid::operator==(const UJRowMajorGrid&objGrid) const
 {
      for(int r=0;r<_rows;r++)
+     {
         for(int c=0;c<_cols;c++)
-           return this->array[r][c] == array[r][c];
-    return false;
+        {
+            if(this->array[r][c] != array[r][c])
+                return false;
+        }
+     }
+
+    return true;
 }
 
 
 bool UJRowMajorGrid::operator!=(const UJRowMajorGrid&objGrid) const
 {
-     for(int r=0;r<_rows;r++)
-        for(int c=0;c<_cols;c++)
-           return this->array[r][c] != array[r][c];
-    return true;
+    return objGrid != *this;
 }
 //Can access and modify values
-char UJRowMajorGrid::operator()(const int&rIndex,const int&cIndex)
+char &UJRowMajorGrid::operator()(const int&rIndex,const int&cIndex)
 {
-  //  if(rIndex)
+    return this->array[rIndex][cIndex];
 }
 
 char& UJRowMajorGrid::operator=(char chRHS)
 {
     return  chRHS;
-
 }
 
-char UJRowMajorGrid::operator[](const int&Index)
+char &UJRowMajorGrid::operator[](const int&Index)
 {
-    if(Index < 0 || Index > 8)
+    if(Index < 0)
     {
         std::cerr<<"Index out of bound of array\n";
         exit(ERROR_INDEX_OUT_OF_BOUNDS);
     }
+    int size = 2;
+    int count= 0;
+    int set =0;
 
-    if(Index >= 0 && Index <=2)
-        return array[0][Index];
-    else if(Index >= 3 && Index <=5)
-        return array[1][Index-3];
-    else if(Index >= 6 && Index <=8)
-        return array[2][Index-6];
+    while(1)
+    {
+        if(Index >= set && Index<=size)
+            return array[count][Index-set];
+        set +=3;
+        size+=3;
+        count++;
+    }
 }
 
 std::ostream&operator<<(std::ostream& sLHS,const UJRowMajorGrid& objLHS)
@@ -92,8 +96,7 @@ std::ostream&operator<<(std::ostream& sLHS,const UJRowMajorGrid& objLHS)
 UJRowMajorGrid::~UJRowMajorGrid()
 {
     for(int r=0;r<_rows;r++)
-        for(int c=0;c<_cols;c++)
-            delete[] array[r];
+        delete[] array[r];
 
     delete[] array;
     array =0;
