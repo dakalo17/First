@@ -9,19 +9,13 @@ UJRowMajorGrid::UJRowMajorGrid(int intRows ,int intCols)
     array = new char*[_rows];
 
     for(int r=0;r<_rows;r++)
+    {
+        array[r] = new char[_cols];
         for(int c=0;c<_cols;c++)
-            array[r] = new char[_cols];
-
-    array[0][0] = 'a';
-    array[0][1] = 'b';
-    array[0][2] = 'c';
-    array[1][0] = 'd';
-    array[1][1] = 'e';
-    array[1][2] = 'f';
-    array[2][0] = 'g';
-    array[2][1] = 'h';
-    array[2][2] = 'i';
-
+        {
+            array[r][c] = r+c+1;
+        }
+    }
 }
 UJRowMajorGrid::UJRowMajorGrid(const UJRowMajorGrid& objGrid)
 {
